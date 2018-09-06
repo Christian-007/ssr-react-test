@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from '../public/images/logo.svg';
 import './App.css';
 import Loadable from 'react-loadable';
 
 const AsyncComponent = Loadable({
-  loader: () => import("./SomeComponent"),
+  loader: () => import(/* webpackChunkName: "myNamedChunk" */ './SomeComponent'),
   loading: () => <div>loading...</div>,
+  modules: ['myNamedChunk']
 });
 
 
@@ -14,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src="./logo.svg" className="App-logo" alt="logo"/>
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
